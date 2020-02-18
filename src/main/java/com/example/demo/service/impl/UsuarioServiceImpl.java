@@ -3,11 +3,15 @@ package com.example.demo.service.impl;
 import com.example.demo.model.entity.Usuario;
 import com.example.demo.model.repository.UsuarioRepository;
 import com.example.demo.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService{
-  
+
   private UsuarioRepository repository;
-  
+
+  @Autowired
   public UsuarioServiceImpl(UsuarioRepository repository) {
     this.repository = repository;
   }
@@ -27,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService{
   @Override
   public void validarEmail(String email) {
     // TODO Auto-generated method stub
-    
+
   }
 
 }
