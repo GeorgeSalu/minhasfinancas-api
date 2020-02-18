@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,4 +42,8 @@ public class Lancamento {
 	@Column(name = "data_cadastro")
 	@Convert(converter = Jsr310Converters.DateToLocalDateConverter.class)
 	private LocalDate dataCadastro;
+	
+	@Column(name = "tipo")
+	@Enumerated(value = EnumType.STRING)
+	private TipoLancamento tipo;
 }
