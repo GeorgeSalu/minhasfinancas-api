@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.convert.Jsr310Converters;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import com.example.demo.model.enums.StatusLancamento;
 import com.example.demo.model.enums.TipoLancamento;
@@ -51,7 +51,7 @@ public class Lancamento {
 	private BigDecimal valor;
 
 	@Column(name = "data_cadastro")
-	@Convert(converter = Jsr310Converters.DateToLocalDateConverter.class)
+	@Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
 	private LocalDate dataCadastro;
 
 	@Column(name = "tipo")
