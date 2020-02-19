@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.RegraNegocioException;
 import com.example.demo.model.entity.Usuario;
 import com.example.demo.model.repository.UsuarioRepository;
 import com.example.demo.service.UsuarioService;
@@ -30,8 +31,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 
   @Override
   public void validarEmail(String email) {
-    // TODO Auto-generated method stub
-
+    boolean existe = repository.existsByEmail(email);
+    if(existe) {
+      throw new RegraNegocioException("Ja existe um usuario cadastrado com este email");
+    }
   }
 
 }
