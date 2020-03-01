@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.model.entity.Usuario;
@@ -17,6 +18,7 @@ import com.example.demo.model.entity.Usuario;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 public class UsuarioRepositoryTest {
   
   @Autowired
