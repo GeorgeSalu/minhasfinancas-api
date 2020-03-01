@@ -28,7 +28,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 
   @Override
   @Transactional
-  public Lancamento autualizar(Lancamento lancamento) {
+  public Lancamento atualizar(Lancamento lancamento) {
     Objects.requireNonNull(lancamento.getId());
     return repository.save(lancamento);
   }
@@ -49,6 +49,7 @@ public class LancamentoServiceImpl implements LancamentoService {
   @Override
   public void atualizarStatus(Lancamento lancamento, StatusLancamento status) {
     lancamento.setStatus(status);
+    atualizar(lancamento);
   }
 
 }
