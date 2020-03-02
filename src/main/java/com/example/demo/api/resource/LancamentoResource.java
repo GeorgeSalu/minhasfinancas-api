@@ -41,7 +41,7 @@ public class LancamentoResource {
   }
   
   @PutMapping("{id}")
-  public ResponseEntity atualizar(@PathVariable Long id, @RequestBody LancamentoDTO dto) {
+  public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody LancamentoDTO dto) {
     return service.obterPorId(id).map(entity -> {
       try {
         Lancamento lancamento = converter(dto);
@@ -54,6 +54,8 @@ public class LancamentoResource {
     }).orElseGet(() -> 
       new ResponseEntity("Lancamento nao encontrado na base de dados", HttpStatus.BAD_REQUEST));
   }
+  
+  
   
   private Lancamento converter(LancamentoDTO dto) {
     Lancamento lancamento = new Lancamento();
