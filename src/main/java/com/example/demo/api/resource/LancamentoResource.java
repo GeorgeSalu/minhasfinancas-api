@@ -31,8 +31,9 @@ public class LancamentoResource {
   private LancamentoService service;
   private UsuarioService usuarioService;
   
-  public LancamentoResource(LancamentoService service) {
+  public LancamentoResource(LancamentoService service, UsuarioService usuarioService) {
     this.service = service;
+    this.usuarioService = usuarioService;
   }
   
   @GetMapping
