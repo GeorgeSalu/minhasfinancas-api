@@ -85,7 +85,7 @@ public class LancamentoRepositoryTest {
   }
 
   
-  private Lancamento criarLancamento() {
+  public static Lancamento criarLancamento() {
     return Lancamento.builder()
                                     .ano(2019)
                                     .mes(1)
