@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class LancamentoRepositoryTest {
     
     lancamento = repository.save(lancamento);
     
-    Assertions.assertThat(lancamento.getId()).isNotNull();
+    assertThat(lancamento.getId()).isNotNull();
   }
   
   @Test
@@ -49,7 +49,7 @@ public class LancamentoRepositoryTest {
     repository.delete(lancamento);
     
     Lancamento lancamentoInexistente = entityManager.find(Lancamento.class, lancamento.getId());
-    Assertions.assertThat(lancamentoInexistente).isNull();
+    assertThat(lancamentoInexistente).isNull();
   }
 
   @Test
@@ -64,9 +64,9 @@ public class LancamentoRepositoryTest {
     
     Lancamento lancamentoAutualizado = entityManager.find(Lancamento.class, lancamento.getId());
     
-    Assertions.assertThat(lancamento.getAno()).isEqualTo(2018);
-    Assertions.assertThat(lancamento.getDescricao()).isEqualTo("teste atualizar");
-    Assertions.assertThat(lancamento.getStatus()).isEqualTo(StatusLancamento.CANCELADO);
+    assertThat(lancamento.getAno()).isEqualTo(2018);
+    assertThat(lancamento.getDescricao()).isEqualTo("teste atualizar");
+    assertThat(lancamento.getStatus()).isEqualTo(StatusLancamento.CANCELADO);
   }
   
   @Test
@@ -75,7 +75,7 @@ public class LancamentoRepositoryTest {
     
     Optional<Lancamento> lancamentoEncontrado = repository.findById(lancamento.getId());
     
-    Assertions.assertThat(lancamentoEncontrado.isPresent()).isTrue();
+    assertThat(lancamentoEncontrado.isPresent()).isTrue();
   }
 
   private Lancamento criarEPersistirUmLancamento() {
