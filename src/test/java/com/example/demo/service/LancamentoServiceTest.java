@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.example.demo.exception.RegraNegocioException;
 import com.example.demo.model.entity.Lancamento;
 import com.example.demo.model.enums.StatusLancamento;
 import com.example.demo.model.repository.LancamentoRepository;
@@ -46,7 +47,11 @@ public class LancamentoServiceTest {
   
   @Test
   public void naoDeveSavarUmLancamentoQuandoHouverErroDeValidacao() {
+    Lancamento lancamentoASalvar = LancamentoRepositoryTest.criarLancamento();
+    Mockito.doThrow(RegraNegocioException.class).when(service).validar(lancamentoASalvar);
     
+    Assertions.catchThrowableOfType(() -> service.salvar(lancamentoASalvar), RegraNegocioException.class);
+    Mockito.verify(repository, Mockito.never()).save(lancamentoASalvar);
   }
   
 }
