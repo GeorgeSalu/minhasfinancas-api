@@ -27,8 +27,9 @@ public class UsuarioResource {
   private UsuarioService service;
   private LancamentoService lancamentoService;
 
-  public UsuarioResource(UsuarioService service) {
+  public UsuarioResource(UsuarioService service, LancamentoService lancamentoService) {
     this.service = service;
+    this.lancamentoService = lancamentoService;
   }
   
   @PostMapping("/autenticar")
