@@ -1,11 +1,15 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Arrays;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -103,6 +107,24 @@ public class LancamentoServiceTest {
     
     //verificacao
     Mockito.verify(repository, Mockito.never()).delete(lancamento);
+  }
+  
+  @Test
+  public void deveAtualizarOStatusDeUmLancamento() {
+    //cenario
+    Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+    lancamento.setId(1l);
+    lancamento.setStatus(StatusLancamento.PENDENTE);
+    
+    StatusLancamento novoStatus = StatusLancamento.EFETIVADO;
+    Mockito.doReturn(lancamento).when(service).atualizar(lancamento);
+    
+    //execucao
+    service.atualizarStatus(lancamento, novoStatus);
+    
+    //verificacao
+    Assertions.assertThat(lancamento.getStatus()).isEqualTo(novoStatus);
+    Mockito.verify(service).atualizar(lancamento);
   }
   
 }
