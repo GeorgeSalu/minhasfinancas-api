@@ -80,4 +80,29 @@ public class LancamentoServiceTest {
     Mockito.verify(repository, Mockito.never()).save(lancamentoASalvar);
   }
   
+  @Test
+  public void deveDeletarUmLancamento() {
+    //cenario 
+    Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+    lancamento.setId(1l);
+    
+    //execucao
+    service.deletar(lancamento);
+    
+    //verificacao
+    Mockito.verify(repository).delete(lancamento);
+  }
+  
+  @Test
+  public void deveLancarErroAoTentarDeletarUmLancamentoQueAindaNaoFoiSalvo() {
+    //cenario 
+    Lancamento lancamento = LancamentoRepositoryTest.criarLancamento();
+    
+    //execucao
+    Assertions.catchThrowableOfType(() -> service.deletar(lancamento), NullPointerException.class);
+    
+    //verificacao
+    Mockito.verify(repository, Mockito.never()).delete(lancamento);
+  }
+  
 }
